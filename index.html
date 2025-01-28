@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$$$$$$$</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0010;
+            color: #9370DB;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            background: linear-gradient(45deg, #0a0010, #0c0018);
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease;
+        }
+
+        .container.visible {
+            opacity: 0.8;
+            pointer-events: all;
+        }
+
+        .enter-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transition: opacity 1s ease;
+            background-color: #0a0010;
+        }
+
+        .enter-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .enter-button {
+            font-size: 1.2em;
+            border: none;
+            color: #9370DB;
+            cursor: pointer;
+            transition: all 0.8s ease;
+            background: transparent;
+            width: fit-content;
+            padding: 10px 20px;
+            font-weight: 300;
+            text-decoration: none;
+            text-align: center;
+            font-family: 'Fira Mono', monospace;
+        }
+
+        .enter-button:hover {
+            color: #4B0082;
+            text-shadow: 0 0 5px #9370DB;
+        }
+
+        .content-box {
+            background: rgba(10, 0, 16, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(75, 0, 130, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(147, 112, 219, 0.1);
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, #4B0082, #9370DB) border-box;
+            box-shadow: 0 0 15px rgba(75, 0, 130, 0.3);
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            filter: grayscale(50%) brightness(0.8);
+        }
+
+        .logo {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 0px;
+            background: linear-gradient(45deg, #4B0082, #9370DB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 8px rgba(75, 0, 130, 0.3);
+        }
+
+        .subtitle {
+            font-size: 0.8em;
+            margin-bottom: 50px;
+            font-weight: 300;
+            opacity: 0.6;
+            color: #9370DB;
+            font-family: 'Fira Mono', monospace;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .social-link {
+            font-size: 0.9em;
+            color: #9370DB;
+            text-decoration: none;
+            transition: all 0.8s ease;
+            text-align: center;
+            border: none;
+            background: transparent;
+            padding: 10px 20px;
+            font-family: 'Fira Mono', monospace;
+        }
+
+        .social-link:hover {
+            color: #4B0082;
+            text-shadow: 0 0 5px #9370DB;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .audio-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2;
+            opacity: 0.5;
+            transition: opacity 0.5s;
+            padding: 10px;
+            border: none;
+            background: transparent;
+        }
+
+        .audio-controls:hover {
+            opacity: 0.8;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #4B008215, #9370DB15);
+            background-size: 400% 400%;
+            animation: gradient 20s ease infinite;
+            z-index: -2;
+        }
+    </style>
+</head>
+<body>
+    <div class="enter-screen" id="enterScreen">
+        <button class="enter-button" id="enterButton">click to enter</button>
+    </div>
+    <audio id="bgMusic" loop>
+        <source src="your-music-file.mp3" type="audio/mp3">
+    </audio>
+    <div class="particles" id="particles-js"></div>
+    <div class="container" id="mainContent">
+        <div class="content-box">
+            <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+            <div class="logo">xdzz1337</div>
+            <div class="subtitle">larp, skid, hvh bot</div>
+            <div class="social-links">
+                <a href="https://steamcommunity.com/id/x5z/" class="social-link">steam</a>
+                <a href="https://discordapp.com/users/1272263951710949437" class="social-link">discord</a>
+                <a href="https://github.com/xdzz1337" class="social-link">github</a>
+                <a href="https://oxide.wtf/members/xdzz.951/" class="social-link">oxide</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Enter screen functionality
+        document.getElementById('enterButton').addEventListener('click', function() {
+            document.getElementById('enterScreen').classList.add('hidden');
+            document.getElementById('mainContent').classList.add('visible');
+            const bgMusic = document.getElementById('bgMusic');
+            bgMusic.volume = 0.3;
+            bgMusic.play();
+        });
+
+        // Particles JS Configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 40,
+                    density: {
+                        enable: true,
+                        value_area: 1000
+                    }
+                },
+                color: {
+                    value: '#4B0082'
+                },
+                shape: {
+                    type: 'circle'
+                },
+                opacity: {
+                    value: 0.05,
+                    random: true
+                },
+                size: {
+                    value: 2,
+                    random: true
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#9370DB',
+                    opacity: 0.05,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 0.5,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'bubble'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+</html>
